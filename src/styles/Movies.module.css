@@ -2,6 +2,48 @@
   padding: 2rem;
 }
 
+.exploresection {
+  background-image: url("https://www.shutterstock.com/image-vector/cinema-film-strip-wave-reel-600nw-1422026513.jpg");
+  box-sizing: border-box;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+.exploresectioninner {
+  min-height: 330px;
+  height: calc(100vh / 2.5);
+  max-height: 380px;
+  background-color: rgba(3, 37, 65, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+}
+.exploresection h3 {
+  font-size: 3.5em;
+  font-weight: 700;
+  margin: 1rem;
+  line-height: 1;
+}
+.exploresection h4 {
+  font-size: 2.75em;
+  font-weight: 600;
+  margin: 1rem;
+}
+.searchinput {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  width: 95%;
+  border: none;
+  outline: none;
+  font-size: large;
+  font-weight: 400;
+  color: rgb(87, 86, 86);
+}
+.searchinput::placeholder {
+  font-size: large;
+}
 .movieslist {
   display: grid;
   grid-column-gap: 2rem;
@@ -60,7 +102,6 @@
   border: 0.13rem solid rgb(167, 246, 98);
 }
 .popularityinner span {
-  /* position: absolute; */
   font-size: 0.5rem;
 }
 

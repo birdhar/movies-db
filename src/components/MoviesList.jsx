@@ -4,17 +4,20 @@ import { end_date, start_date } from "../utils/base";
 import MovieCard from "./MovieCard";
 import style from "../styles/Movies.module.css";
 import Layout from "../Layout";
+import useDebounce from "../hooks/use-debounce";
 
 function MoviesList() {
   const pageRef = useRef(null);
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
+  const debouncedVal = useDebounce(search);
   const { data, loading, error } = useFetchMovies(page, start_date, end_date);
 
   const handleIntersection = (entries) => {
     const entry = entries[0];
 
-    if (entry?.isIntersecting) {
+    if (entry?.isIntersecting && search === "") {
       setPage((prevPage) => prevPage + 1);
     }
   };
@@ -41,9 +44,32 @@ function MoviesList() {
     }
   }, [data]);
 
+  useEffect(() => {
+    const filterdUsers = data?.filter((movie) => {
+      return movie?.title?.toLowerCase()?.includes(search?.toLowerCase());
+    });
+
+    setMovieList(filterdUsers);
+  }, [debouncedVal]);
+
   return (
     <Layout>
-      <section className={style.moviehead}></section>
+      <section className={style.moviehead}>
+        <div className={style.exploresection}>
+          <div className={style.exploresectioninner}>
+            <h3 className={style.heading}>Welcome.</h3>
+            <h4>Millions of movies to discover. Explore now.</h4>
+
+            <input
+              type="text"
+              className={style.searchinput}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Serch for a movie..."
+            />
+          </div>
+        </div>
+      </section>
       <section className={style.moviesContainer}>
         <div className={style.movieslist}>
           {movieList?.map((movie) => (
