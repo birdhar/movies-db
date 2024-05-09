@@ -1,0 +1,8 @@
+.navbar {
+  display: flex;
+  padding: 1.2rem 2.2rem;
+  background-color: #032541;
+}
+.logo {
+  height: 1.4rem;
+}
