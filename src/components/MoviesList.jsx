@@ -5,6 +5,7 @@ import MovieCard from "./MovieCard";
 import style from "../styles/Movies.module.css";
 import Layout from "../Layout";
 import useDebounce from "../hooks/use-debounce";
+import Loader from "./Loader";
 
 function MoviesList() {
   const pageRef = useRef(null);
@@ -52,6 +53,10 @@ function MoviesList() {
     setMovieList(filterdUsers);
   }, [debouncedVal]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <Layout>
       <section className={style.moviehead}>
@@ -71,11 +76,15 @@ function MoviesList() {
         </div>
       </section>
       <section className={style.moviesContainer}>
-        <div className={style.movieslist}>
-          {movieList?.map((movie) => (
-            <MovieCard key={movie?.id} movie={movie} />
-          ))}
-        </div>
+        {movieList?.length === 0 && !loading ? (
+          <div className={style.notfound}>No movies found</div>
+        ) : (
+          <div className={style.movieslist}>
+            {movieList?.map((movie) => (
+              <MovieCard key={movie?.id} movie={movie} />
+            ))}
+          </div>
+        )}
 
         <div className={style.ref} ref={pageRef}></div>
       </section>

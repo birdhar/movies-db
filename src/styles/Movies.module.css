@@ -104,10 +104,27 @@
 .popularityinner span {
   font-size: 0.5rem;
 }
+.moviehead {
+  margin-top: 3.8rem;
+}
+.notfound {
+  display: grid;
+  place-items: center;
+  height: 10rem;
+  color: rgb(34, 45, 56);
+  font-size: larger;
+  font-weight: 500;
+}
 
 @media screen and (max-width: 940px) {
   .movieslist {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .exploresection h3 {
+    font-size: 3em;
+  }
+  .exploresection h4 {
+    font-size: 2.25em;
   }
 }
 @media screen and (max-width: 840px) {
@@ -119,9 +136,34 @@
   .movieslist {
     grid-template-columns: repeat(2, 1fr);
   }
+  .searchinput {
+    padding: 0.75rem;
+    border-radius: 1.25rem;
+    width: 85%;
+
+    font-size: medium;
+  }
+  .searchinput::placeholder {
+    font-size: medium;
+  }
+  .exploresection h3 {
+    font-size: 2.5em;
+  }
+  .exploresection h4 {
+    font-size: 1.75em;
+  }
+  .moviehead {
+    margin-top: 3.4rem;
+  }
 }
 @media screen and (max-width: 480px) {
   .movieslist {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .exploresection h3 {
+    font-size: 2.25em;
+  }
+  .exploresection h4 {
+    font-size: 1.5em;
   }
 }
