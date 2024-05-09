@@ -10,10 +10,11 @@ import Loader from "./Loader";
 function MoviesList() {
   const pageRef = useRef(null);
   const [search, setSearch] = useState("");
+
   const [page, setPage] = useState(1);
   const [movieList, setMovieList] = useState([]);
   const debouncedVal = useDebounce(search);
-  const { data, loading, error } = useFetchMovies(page, start_date, end_date);
+  const { data, loading } = useFetchMovies(page, start_date, end_date);
 
   const handleIntersection = (entries) => {
     const entry = entries[0];
@@ -53,10 +54,6 @@ function MoviesList() {
     setMovieList(filterdUsers);
   }, [debouncedVal]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <Layout>
       <section className={style.moviehead}>
@@ -85,7 +82,11 @@ function MoviesList() {
             ))}
           </div>
         )}
-
+        {loading && (
+          <div className={style.notfound}>
+            <Loader />
+          </div>
+        )}
         <div className={style.ref} ref={pageRef}></div>
       </section>
     </Layout>
